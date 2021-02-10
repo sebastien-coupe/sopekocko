@@ -14,7 +14,7 @@ const sauceSchema = mongoose.Schema({
   },
   manufacturer: {
     type: String,
-    required: true
+    // required: true
   },
   description: {
     type: String,
@@ -22,11 +22,11 @@ const sauceSchema = mongoose.Schema({
   },
   mainPepper: {
     type: String,
-    required: true
+    // required: true
   },
   imageUrl: {
     type: String,
-    required: true
+    // required: true
   },
   heat: {
     type: Number,

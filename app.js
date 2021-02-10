@@ -6,6 +6,7 @@ require('dotenv').config();
 
 // Routes
 const authRoutes = require('./routes/auth');
+const sauceRoutes = require('./routes/sauces');
 
 const app = express();
 
@@ -28,5 +29,6 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
+app.use('/api/sauces', sauceRoutes);
 
 module.exports = app;
