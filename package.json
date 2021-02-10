@@ -4,7 +4,7 @@
   "description": "Projet 6 du parcours Développeur Web d'OpenClassrooms",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
