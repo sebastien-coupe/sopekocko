@@ -1,6 +1,18 @@
 const express = require('express');
+const mongoose = require('mongoose');
+
+require('dotenv').config();
 
 const app = express();
+
+// Create connexion to MongoDB
+mongoose.connect(process.env.MONGO_DB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
+})
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(() => console.log('Failed to connect to MongoDB'))
 
 // Prevent Cors Errors
 app.use((req, res, next) => {
