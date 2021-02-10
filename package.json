@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sebastien-coupe/sopekocko/issues"
   },
-  "homepage": "https://github.com/sebastien-coupe/sopekocko#readme"
+  "homepage": "https://github.com/sebastien-coupe/sopekocko#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
