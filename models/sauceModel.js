@@ -43,12 +43,12 @@ const sauceSchema = mongoose.Schema({
     default: 0,
     // required: true
   },
-  userLiked: {
+  usersLiked: {
     type: [String],
     default: [],
     // required: true
   },
-  userDisliked: {
+  usersDisliked: {
     type: [String],
     default: [],
     // required: true
