@@ -14,7 +14,7 @@ const sauceSchema = mongoose.Schema({
   },
   manufacturer: {
     type: String,
-    // required: true
+    required: true
   },
   description: {
     type: String,
@@ -22,27 +22,36 @@ const sauceSchema = mongoose.Schema({
   },
   mainPepper: {
     type: String,
-    // required: true
+    required: true
   },
   imageUrl: {
     type: String,
-    // required: true
+    required: true
   },
   heat: {
     type: Number,
-    validate: value => value >= 1 && value <= 10
+    validate: value => value >= 1 && value <= 10,
+    require: true
   },
   likes: {
-    type: Number
+    type: Number,
+    default: 0,
+    required: true
   },
   dislikes: {
-    type: Number
+    type: Number,
+    default: 0,
+    required: true
   },
   userLiked: {
-    type: [String]
+    type: [String],
+    default: [],
+    required: true
   },
   userDisliked: {
-    type: [String]
+    type: [String],
+    default: [],
+    required: true
   }
 })
 
