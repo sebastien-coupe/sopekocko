@@ -30,9 +30,11 @@ exports.getOne = (req, res, next) => {
 
 // Create a new sauce
 exports.create = (req, res, next) => {
-  delete req.body.id;
+  const sauceDetails = JSON.parse(req.body.sauce);
+  delete sauceDetails._id;
   const sauce = new Sauce({
-    ...req.body
+    ...sauceDetails,
+    imageUrl: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
   })
 
   sauce.save()
