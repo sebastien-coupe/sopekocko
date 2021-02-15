@@ -11,5 +11,6 @@ router.get('/:id', auth, sauceController.getOne);
 router.post('/', auth, imageUpload, sauceController.create);
 router.put('/:id', auth, imageUpload, sauceController.update);
 router.delete('/:id', auth, sauceController.delete);
+router.post('/:id/like', auth, sauceController.addLike);
 
 module.exports = router;

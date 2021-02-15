@@ -127,3 +127,55 @@ exports.delete = (req, res, next) => {
       })
     })
 }
+
+exports.addLike = async (req, res, next) => {
+  Sauce.findOne({
+    _id: req.params.id
+  })
+    .then(sauce => {
+      const update = {};
+
+      switch (req.body.like) {
+        case 0:
+          if (sauce.usersLiked.includes(req.body.userId)) {
+            update.$inc = { likes: -1 };
+            update.$pull = { usersLiked: req.body.userId };
+          }
+          if (sauce.usersDisliked.includes(req.body.userId)) {
+            update.$inc = { dislikes: -1 };
+            update.$pull = { usersDisliked: req.body.userId };
+          }
+          break;
+        case 1:
+          update.$inc = { likes: 1 };
+          update.$push = { usersLiked: req.body.userId };
+          update.$pull = { usersDisliked: req.body.userId };
+          break;
+        case -1:
+          update.$inc = { dislikes: 1 }
+          update.$pull = { usersLiked: req.body.userId };
+          update.$push = { usersDisliked: req.body.userId };
+          break;
+      }
+
+      Sauce.updateOne(
+        {
+          _id: req.params.id
+        },
+        {
+          ...update,
+          _id: req.params.id
+        }
+      )
+        .then(() => {
+          res.status(200).json({
+            message: "Updated."
+          })
+        })
+        .catch(error => {
+          res.send(500).json({ error })
+        })
+
+    })
+
+}
