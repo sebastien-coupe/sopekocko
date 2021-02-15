@@ -9,7 +9,7 @@ const sauceController = require('../controllers/sauceController');
 router.get('/', auth, sauceController.getAll);
 router.get('/:id', auth, sauceController.getOne);
 router.post('/', auth, imageUpload, sauceController.create);
-router.put('/:id', auth, sauceController.update);
+router.put('/:id', auth, imageUpload, sauceController.update);
 router.delete('/:id', auth, sauceController.delete);
 
 module.exports = router;

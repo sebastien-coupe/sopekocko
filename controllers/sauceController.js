@@ -53,12 +53,36 @@ exports.create = (req, res, next) => {
 
 // Update sauce matching req.params.id
 exports.update = (req, res, next) => {
+  const sauceObj = req.file ?
+    {
+      ...JSON.parse(req.body.sauce),
+      imageUrl: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+    } :
+    {
+      ...req.body
+    };
+
+  if (req.file) {
+    // If new image is given, delete previous image from server
+    Sauce.findOne({
+      _id: req.params.id
+    })
+      .then((sauce) => {
+        const associatedImageFile = sauce.imageUrl.split('/uploads/')[1];
+        fs.unlink(`uploads/${associatedImageFile}`, error => {
+          if (error) {
+            console.log('Previous image has not been deleted.');
+          }
+        })
+      })
+  }
+
   Sauce.updateOne(
     {
       _id: req.params.id
     },
     {
-      ...req.body,
+      ...sauceObj,
       _id: req.params.id
     }
   )
