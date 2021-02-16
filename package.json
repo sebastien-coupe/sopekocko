@@ -4,7 +4,8 @@
   "description": "Projet 6 du parcours Développeur Web d'OpenClassrooms",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "serve": "node server.js"
   },
   "repository": {
     "type": "git",
