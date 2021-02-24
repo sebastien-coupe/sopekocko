@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
-const path = require('path')
+const path = require('path');
 
 require('dotenv').config();
 
