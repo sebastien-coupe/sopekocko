@@ -30,7 +30,7 @@ exports.login = (req, res, next) => {
   })
     .then(user => {
       if (!user) {
-        res.status(401).json({
+        return res.status(401).json({
           error: 'Email and/or password is incorrect'
         })
       }
@@ -38,7 +38,7 @@ exports.login = (req, res, next) => {
       bcrypt.compare(req.body.password, user.password)
         .then(valid => {
           if (!valid) {
-            res.status(401).json({
+            return res.status(401).json({
               error: 'Email and/or password is incorrect'
             })
           }

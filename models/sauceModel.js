@@ -5,7 +5,7 @@ const sauceSchema = mongoose.Schema({
   userId: {
     type: String,
     required: true,
-    // unique: true
+    unique: true
   },
   name: {
     type: String,
@@ -41,17 +41,17 @@ const sauceSchema = mongoose.Schema({
   dislikes: {
     type: Number,
     default: 0,
-    // required: true
+    required: true
   },
   usersLiked: {
     type: [String],
     default: [],
-    // required: true
+    required: true
   },
   usersDisliked: {
     type: [String],
     default: [],
-    // required: true
+    required: true
   }
 })
 
