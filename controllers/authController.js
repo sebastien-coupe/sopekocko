@@ -2,7 +2,7 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passwordValidator = require('password-validator');
-
+const maskData = require('maskdata');
 const pwdSchema = new passwordValidator();
 
 pwdSchema
@@ -21,8 +21,9 @@ exports.signup = (req, res, next) => {
 
   bcrypt.hash(req.body.password, 10)
     .then(hash => {
+      const maskedEmail = maskData.maskEmail2(req.body.email);
       const user = new User({
-        email: req.body.email,
+        email: maskedEmail,
         password: hash
       });
       user.save()
@@ -40,8 +41,9 @@ exports.signup = (req, res, next) => {
 
 // User authentication management
 exports.login = (req, res, next) => {
+  const maskedEmail = maskData.maskEmail2(req.body.email)
   User.findOne({
-    email: req.body.email
+    email: maskedEmail
   })
     .then(user => {
       if (!user) {
