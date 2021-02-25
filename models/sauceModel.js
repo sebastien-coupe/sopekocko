@@ -4,8 +4,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const sauceSchema = mongoose.Schema({
   userId: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   name: {
     type: String,
