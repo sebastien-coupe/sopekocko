@@ -1,9 +1,24 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const passwordValidator = require('password-validator');
+
+const pwdSchema = new passwordValidator();
+
+pwdSchema
+  .is().min(8)
+  .has().lowercase()
+  .has().uppercase()
+  .has().digits();
 
 // User registration management
 exports.signup = (req, res, next) => {
+  if (!pwdSchema.validate(req.body.password)) {
+    return res.status(400).json({
+      message: 'Password is too weak.'
+    })
+  }
+
   bcrypt.hash(req.body.password, 10)
     .then(hash => {
       const user = new User({
