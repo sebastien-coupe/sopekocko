@@ -13,6 +13,7 @@ const authRoutes = require('./routes/auth');
 const sauceRoutes = require('./routes/sauces');
 
 const app = express();
+app.use(sanitizer());
 
 // Create connexion to MongoDB
 mongoose.connect(process.env.MONGO_DB, {
@@ -33,7 +34,6 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(helmet());
-app.use(sanitizer());
 app.use(mongoSanitize());
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
